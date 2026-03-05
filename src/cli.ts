@@ -14,6 +14,7 @@ import { removeCommand, parseRemoveOptions } from './remove.ts';
 import { runSync, parseSyncOptions } from './sync.ts';
 import { runVerify } from './verify.ts';
 import { runValidate } from './validate.ts';
+import { runStatus } from './status.ts';
 import { track } from './telemetry.ts';
 import { fetchSkillFolderHash, getGitHubToken } from './skill-lock.ts';
 
@@ -126,6 +127,7 @@ ${BOLD}Manage Skills:${RESET}
 ${BOLD}Updates:${RESET}
   check                Check for available skill updates
   update               Update all skills to latest versions
+  status               Show lifecycle status of installed skills
 
 ${BOLD}Authoring:${RESET}
   validate [path]      Validate skill metadata (alias: lint)
@@ -702,6 +704,9 @@ async function main(): Promise<void> {
       await runValidate(restArgs);
       break;
     }
+    case 'status':
+      await runStatus(restArgs);
+      break;
     case 'list':
     case 'ls':
       await runList(restArgs);
