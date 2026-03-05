@@ -422,6 +422,8 @@ export interface AddOptions {
   frozenLockfile?: boolean;
   features?: string[];
   group?: string;
+  configure?: boolean;
+  param?: Record<string, string>;
 }
 
 /**
@@ -1818,6 +1820,18 @@ export function parseAddOptions(args: string[]): { source: string[]; options: Ad
       i++;
       if (i < args.length && args[i] && !args[i]!.startsWith('-')) {
         options.group = args[i];
+      }
+    } else if (arg === '--configure') {
+      options.configure = true;
+    } else if (arg === '--param') {
+      i++;
+      if (i < args.length && args[i]) {
+        const kv = args[i]!;
+        const eqIdx = kv.indexOf('=');
+        if (eqIdx > 0) {
+          options.param = options.param || {};
+          options.param[kv.slice(0, eqIdx)] = kv.slice(eqIdx + 1);
+        }
       }
     } else if (arg && !arg.startsWith('-')) {
       source.push(arg);
