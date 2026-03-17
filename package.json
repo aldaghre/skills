@@ -1,6 +1,6 @@
 {
   "name": "skills",
-  "version": "1.4.4",
+  "version": "1.4.5-snapshot.2",
   "description": "The open agent skills ecosystem",
   "type": "module",
   "bin": {
@@ -93,6 +93,7 @@
     "@clack/prompts": "^0.11.0",
     "@types/bun": "latest",
     "@types/node": "^22.10.0",
+    "@vercel/detect-agent": "^1.2.1",
     "gray-matter": "^4.0.3",
     "husky": "^9.1.7",
     "lint-staged": "^16.2.7",
